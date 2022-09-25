@@ -1,12 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CannonController : MonoBehaviour 
 {
     [SerializeField]
     Transform cannonBase;
 
-    [SerializeField]
-    Transform turret;
+    public Transform turret;
 
     [SerializeField]
     Transform firePoint;
@@ -29,7 +28,7 @@ public class CannonController : MonoBehaviour
     [SerializeField]
     float cooldown = 1;
 
-    private float currentSpeed;
+    public float currentSpeed;
     private float currentAngle;
     private float currentTimeOfFlight;
 
