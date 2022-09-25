@@ -11,7 +11,8 @@ public class Cannon : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(shell, firePos.position, fireRot.rotation);
+            Instantiate(shell, firePos.position
+                , fireRot.rotation);
         }
     }
 }
