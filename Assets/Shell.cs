@@ -8,6 +8,11 @@ public class Shell : MonoBehaviour
     public ParticleSystem explosion;
     public float attackRange = 3;
     public int damage = 30;
+    public Rigidbody rb;
+    private void Update()
+    {
+        transform.forward = rb.velocity;
+    }
     private void OnTriggerEnter(Collider other)
     {
         print(other);

@@ -18,6 +18,7 @@ public class Cannon : MonoBehaviour
         {
             GameObject p = Instantiate(shell, firePos.position, Quaternion.identity);
             p.GetComponent<Rigidbody>().velocity = cannon.turret.up * cannon.currentSpeed;
+            //p.transform.forward = cannon.turret.up;
         }
     }
 }
