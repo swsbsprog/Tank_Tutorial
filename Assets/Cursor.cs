@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
+    public static Cursor instance;
+    private void Awake() => instance = this;
     public Vector3 mousePosition;
     public LayerMask mask;
     void Update()

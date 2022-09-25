@@ -7,9 +7,14 @@ public class Cannon : MonoBehaviour
     public GameObject shell;
     public Transform firePos;
     public Transform fireRot;
+    [SerializeField]
+    CannonController cannon;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        cannon.SetTargetWithAngle(
+            Cursor.instance.transform.position, 45);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Instantiate(shell, firePos.position
                 , fireRot.rotation);

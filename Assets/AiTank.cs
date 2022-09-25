@@ -31,9 +31,14 @@ public class AiTank : BaseTank
             // 포신 플레이어를 향하게 하기
             while (IsTowardToPlayer() == false)
             {
-                //var targetDir = GetTargetDir();
+                var targetDir = GetTargetDir();
                 //float multiply = 오른쪽인지 왼쪽인지 가까운 쪽으로;
-                turretTr.Rotate(axis, rotateAngle);
+                //turretTr.Rotate(axis, rotateAngle);
+
+                toAngle = Vector3.Angle(targetDir, Vector3.up);
+                var speed = toAngle > 0 ? rotateSpeed : -rotateSpeed;
+                turretTr.Rotate(axis, speed);
+
                 yield return null;
             }
 
@@ -47,8 +52,9 @@ public class AiTank : BaseTank
     }
 
     public float angle;
+    public float toAngle;
     public float minAngle = 1;
-    public float rotateAngle = 1;
+    public float rotateSpeed = 1;
     public Vector3 axis = new Vector3(0, 1, 0);
     private bool IsTowardToPlayer()
     {
