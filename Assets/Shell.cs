@@ -15,7 +15,7 @@ public class Shell : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print(other);
+        Debug.Log(other, other.transform);
         Destroy(gameObject);
 
         explosion.transform.parent = null;

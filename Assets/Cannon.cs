@@ -17,6 +17,9 @@ public class Cannon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             GameObject p = Instantiate(shell, firePos.position, Quaternion.identity);
+            p.transform.position = firePos.position;
+            print(firePos.position);
+            print(p.transform.position);
             p.GetComponent<Rigidbody>().velocity = cannon.turret.up * cannon.currentSpeed;
             //p.transform.forward = cannon.turret.up;
         }
