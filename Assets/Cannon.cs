@@ -9,7 +9,7 @@ public class Cannon : MonoBehaviour
     public Transform fireRot;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             Instantiate(shell, firePos.position
                 , fireRot.rotation);
