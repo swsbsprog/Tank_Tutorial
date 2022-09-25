@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AiTank : BaseTank
 {
@@ -10,6 +11,7 @@ public class AiTank : BaseTank
     public GameObject missile;
     public Transform firePos;
     private float afterFireDelay = 1f;
+    public NavMeshAgent agent;
 
     new IEnumerator Start()
     {
@@ -19,9 +21,11 @@ public class AiTank : BaseTank
             // 우리탱크로 이동.
             while (IsAttackableRange()== false) //이동
             {
-                Vector3 dir = GetTargetDir(); // 크기를 1로 만듬(방향만 사용)
-                transform.Translate(dir * speed * Time.deltaTime, Space.World);
-                transform.forward = dir;
+                agent.destination = Tank.instance.transform.position;
+
+                //Vector3 dir = GetTargetDir(); // 크기를 1로 만듬(방향만 사용)
+                //transform.Translate(dir * speed * Time.deltaTime, Space.World);
+                //transform.forward = dir;
                 yield return null;
             }
 
