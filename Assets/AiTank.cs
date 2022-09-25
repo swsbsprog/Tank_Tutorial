@@ -25,8 +25,6 @@ public class AiTank : MonoBehaviour
             }
 
             // 우리탱크로 이동 했으니 미사일을 발사
-            yield return null;
-
             transform.forward = GetTargetDir();
             var newMissile = Instantiate(missile);
             newMissile.transform.position = firePos.position;
