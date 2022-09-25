@@ -15,7 +15,6 @@ public class Shell : MonoBehaviour
 
         explosion.transform.parent = null;
         explosion.Play();
-
         //// 주변에 있는 탱크에 데미지를 주자.
         //// 방법1 (List foreach)
         //BaseTank.tanks.ForEach(tank =>
@@ -25,8 +24,6 @@ public class Shell : MonoBehaviour
         //    if (distance < attackRange)
         //        tank.Damage(damage);
         //});
-
-
         // 방법2 (일반적인 foreach)
         foreach (var tank in BaseTank.tanks)
         {
