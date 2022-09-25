@@ -12,6 +12,7 @@ public class AiTank : BaseTank
     public Transform firePos;
     private float afterFireDelay = 1f;
     public NavMeshAgent agent;
+    public Transform turretTr;
 
     new IEnumerator Start()
     {
@@ -19,23 +20,41 @@ public class AiTank : BaseTank
         while (true)
         {
             // 우리탱크로 이동.
-            while (IsAttackableRange()== false) //이동
+            agent.enabled = true;
+            while (IsAttackableRange() == false) //이동
             {
                 agent.destination = Tank.instance.transform.position;
+                yield return null;
+            }
+            agent.enabled = false;
 
-                //Vector3 dir = GetTargetDir(); // 크기를 1로 만듬(방향만 사용)
-                //transform.Translate(dir * speed * Time.deltaTime, Space.World);
-                //transform.forward = dir;
+            // 포신 플레이어를 향하게 하기
+            while (IsTowardToPlayer() == false)
+            {
+                //var targetDir = GetTargetDir();
+                //float multiply = 오른쪽인지 왼쪽인지 가까운 쪽으로;
+                turretTr.Rotate(axis, rotateAngle);
                 yield return null;
             }
 
             // 우리탱크로 이동 했으니 미사일을 발사
-            transform.forward = GetTargetDir();
+            //transform.forward = GetTargetDir();
             var newMissile = Instantiate(missile);
             newMissile.transform.position = firePos.position;
-            newMissile.transform.forward = transform.forward;
+            newMissile.transform.forward = turretTr.forward;
             yield return new WaitForSeconds(afterFireDelay);
         }
+    }
+
+    public float angle;
+    public float minAngle = 1;
+    public float rotateAngle = 1;
+    public Vector3 axis = new Vector3(0, 1, 0);
+    private bool IsTowardToPlayer()
+    {
+        var targetDir = GetTargetDir();
+        angle = Vector3.Angle(turretTr.forward, targetDir);
+        return angle < minAngle;
     }
 
     private Vector3 GetTargetDir()
