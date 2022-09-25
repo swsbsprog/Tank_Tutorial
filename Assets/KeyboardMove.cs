@@ -13,6 +13,7 @@ public class KeyboardMove : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) dir.x = -1;
         if (Input.GetKey(KeyCode.S)) dir.z = -1;
         if (Input.GetKey(KeyCode.D)) dir.x = 1;
+
         if (dir.sqrMagnitude != 0) //dir != Vector3.zero
         {
             transform.Translate(speed * Time.deltaTime * dir
