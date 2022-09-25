@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiTank : MonoBehaviour
+public class AiTank : BaseTank
 {
     public float attackRange = 10f;
     private float speed = 3f;
@@ -11,8 +11,9 @@ public class AiTank : MonoBehaviour
     public Transform firePos;
     private float afterFireDelay = 1f;
 
-    IEnumerator Start()
+    new IEnumerator Start()
     {
+        base.Start();
         while (true)
         {
             // 우리탱크로 이동.
