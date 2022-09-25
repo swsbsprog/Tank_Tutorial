@@ -9,6 +9,7 @@ public class Cursor : MonoBehaviour
     {
         mousePosition = Input.mousePosition;
         var ray = Camera.main.ScreenPointToRay(mousePosition);
+        //var checkLayer = LayerMask.NameToLayer("Ground");
         Physics.Raycast(ray, out var hitInfo);
         transform.position =hitInfo.point;
     }

@@ -8,11 +8,16 @@ public class KeyboardMove : MonoBehaviour
 
     void Update()
     {
-        Vector3 move = new Vector3(0, 0, 0);
-        if (Input.GetKey(KeyCode.W)) move.z = 1;
-        if (Input.GetKey(KeyCode.A)) move.x = -1;
-        if (Input.GetKey(KeyCode.S)) move.z = -1;
-        if (Input.GetKey(KeyCode.D)) move.x = 1;
-        transform.Translate(speed * Time.deltaTime * move);
+        Vector3 dir = new Vector3(0, 0, 0);
+        if (Input.GetKey(KeyCode.W)) dir.z = 1;
+        if (Input.GetKey(KeyCode.A)) dir.x = -1;
+        if (Input.GetKey(KeyCode.S)) dir.z = -1;
+        if (Input.GetKey(KeyCode.D)) dir.x = 1;
+        if (dir.sqrMagnitude != 0) //dir != Vector3.zero
+        {
+            transform.Translate(speed * Time.deltaTime * dir
+                , Space.World);
+            transform.forward = dir;
+        }
     }
 }
